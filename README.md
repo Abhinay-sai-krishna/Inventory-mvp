@@ -2,6 +2,8 @@
 
 A lightweight, purely functional SaaS Inventory Management System built as an MVP. 
 
+🚀 **Live Deployment:** [https://inventory-mvp-y1kp.onrender.com](https://inventory-mvp-y1kp.onrender.com)
+
 ## Core Features
 1. **Authentication**: Simple Signup and Login tailored for organizations.
 2. **Dashboard Overview**: Quick statistics displaying Total Products, Total Overall Quantity, and Low Stock alerts.
