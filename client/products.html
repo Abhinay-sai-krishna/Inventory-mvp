@@ -46,7 +46,7 @@
             <input type="text" id="prod-name" placeholder="Product Name" required>
             <input type="text" id="prod-sku" placeholder="SKU" required>
             <input type="number" id="prod-quantity" placeholder="Quantity" required>
-            <input type="number" step="0.01" id="prod-price" placeholder="Price ($)" required>
+            <input type="number" step="0.01" id="prod-price" placeholder="Price (₹)" required>
             <div class="modal-actions">
                 <button onclick="closeModal()">Cancel</button>
                 <button class="btn-primary" onclick="saveProduct()">Save</button>
@@ -95,7 +95,7 @@
                     <td>${p.name}</td>
                     <td>${p.sku}</td>
                     <td class="${isLow ? 'text-danger' : ''}"><strong>${p.quantity}</strong></td>
-                    <td>$${p.price.toFixed(2)}</td>
+                    <td>₹${p.price.toFixed(2)}</td>
                     <td>
                         <button onclick="editProduct(${p.id})">Edit</button>
                         <button class="btn-danger" onclick="deleteProduct(${p.id})">Delete</button>
