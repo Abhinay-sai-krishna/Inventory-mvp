@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand" id="org-name-display">Inventory</div>
+        <div class="nav-links">
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="products.html">Products</a>
+            <a href="#" onclick="logout()">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Dashboard</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Products</h3>
+                <p id="stat-products">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Quantity</h3>
+                <p id="stat-quantity">0</p>
+            </div>
+            <div class="stat-card warning">
+                <h3>Low Stock Items (<= 10)</h3>
+                <p id="stat-low-stock">0</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const userId = localStorage.getItem('userId');
+        if (!userId) window.location.href = 'index.html';
+        
+        document.getElementById('org-name-display').innerText = localStorage.getItem('orgName') + ' Inventory';
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+
+        async function loadDashboard() {
+            try {
+                const res = await fetch(`/api/dashboard`, {
+                    headers: { 'user-id': userId }
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    document.getElementById('stat-products').innerText = data.totalProducts;
+                    document.getElementById('stat-quantity').innerText = data.totalQuantity;
+                    document.getElementById('stat-low-stock').innerText = data.lowStockItems;
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        loadDashboard();
+    </script>
+</body>
+</html>
